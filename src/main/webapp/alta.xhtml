@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/mainframe.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:comp="http://xmlns.jcp.org/jsf/composite/components">
+    
+    
+    <ui:define name="title">Alta de usuario</ui:define>
+    
+    <ui:define name="content" class="center-align">
+        <!--Se usa para centrar el formulario-->
+        <div class="ui-g-4"></div>
+        <div class="ui-g-4">
+            <c:choose>
+                <c:when test="#{empty sesion.usuario}"> 
+                    <h:form id="alta">
+                        <!-- Row 1 -->
+                        <div class="ui-g">
+                            <div class="ui-g-12">
+                                <p:inputText id="nombre" type="text" class="validate" placeholder="José" />
+                                <label for="nombre">Nombre</label>
+                            </div>
+                        </div>
+                        <!-- Row 2 -->
+                        <div class="ui-g">
+                            <div class="ui-g-12">
+                                <p:inputText id="apellidos" type="text" class="validate" placeholder="Perez Perez"/>
+                                <label for="apellidos">Apellidos</label>
+                            </div>
+                        </div>
+                        <!-- Row ...n -->
+                        <div class="ui-g">
+                            <div class="ui-g-12">
+                                <!--Texto label en Primefaces (outputLabel)-->
+                                <p:outputLabel for="passwd" value="Contraseña" />
+                                <p:inputText id="passwd" />
+                            </div>
+                        </div>
+                        <!-- Row ...n -->
+                        <div class="ui-g">
+                            <div class="ui-g-12">
+                                <p:outputLabel for="nacimiento" value="Fecha de nacimiento" />
+                                <p:calendar id="nacimiento" value="#{alta.getCalendarioNacimiento()}" maxdate="#{alta.getCurrentDate()}" />
+                            </div>
+                        </div>
+                        <!-- Row ...n -->
+                        <div class="ui-g">
+                            <div class="ui-g-12">
+                                <p:inputText id="email" type="email" class="validate" />
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <!-- Row ...n -->
+                        <div class="ui-g">
+                            <div class="ui-g-12">
+                                <p:inputText id="tlf" type="text" class="validate" />
+                                <label for="tlf">Teléfono</label>
+                            </div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-4 center_content">
+                                <h:button value="Enviar" onclick="sesion.login()" />
+                            </div>
+                        </div>
+                    </h:form>
+                </c:when>
+                <c:otherwise>
+                    <div class="ui-g">
+                        <div class="ui-g-4"></div>
+                        <div class="ui-g-4">
+                            <h4>Cierra tu sesión para registrar un nuevo usuario</h4>
+                            <br />
+                            <h:button value="Salir" onclick="sesion.logout()" />
+                        </div>
+                    </div> 
+                </c:otherwise> 
+            </c:choose>
+            </div>
+    </ui:define>
+    
+</ui:composition>
+

@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>
+            Autenticación
+        </title>
+    </h:head>
+
+
+    <h:body>
+        <div>
+            <div id="top" class="top">
+                <h:form id="menu">
+                    <ul class="menulist">
+                        <li><h:commandLink action="index.xhtml" value="Inicio"/></li>
+                        <c:choose>
+                            <c:when test="#{!empty controlUsuario.educando or !empty controlUsuario.coordinador or !empty controlUsuario.scouter}">
+                                <li><h:commandLink action="#{controlUsuario.logout()}" value="Salir"/></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li><p:commandLink onclick="PF('dlg').show();" value="Crear Usuario"/></li>
+                            </c:otherwise>
+                        </c:choose>
+                    </ul>
+                </h:form>
+            </div>
+        </div>
+        <div class="login">
+            <c:choose>
+                <c:when test="#{empty controlUsuario.educando and empty controlUsuario.scouter and empty controlUsuario.coordinador}">
+
+                    <h1>Entrar</h1>
+                    <h:form id="login">
+                        <p:messages id="messages" showDetail="true" closable="true">
+                            <p:autoUpdate />
+                        </p:messages>
+                        <table>
+                            <tr>
+                                <td>
+                                    Usuario:
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><h:inputText required="true" requiredMessage="Falta el usuario" id="usuario" class="input" value="#{login.usuario}"/></td>
+                                <p:message for="usuario" display="both" />
+                            </tr>
+                            <tr>
+                                <td>
+                                    Contraseña:
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><h:inputSecret id="pass" class="input" value="#{login.contrasenia}" required="true" requiredMessage="Falta la contraseña"/></td>
+                                <p:message for="pass" display="both"/>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <h:commandButton class="signin" value="Autenticar" action="#{login.autenticar()}"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </h:form>
+                </c:when>
+                <c:otherwise>
+                    <h:form>
+                        <p>Debe salir de la aplicación si quiere entrar como otro usuario</p>
+                        <h:commandLink class="volver" action="#{login.getPagina()}"> <h:commandButton class="signin" value="Ir a mi página"/> </h:commandLink>
+                    </h:form>
+                </c:otherwise>
+            </c:choose>
+        </div>
+
+        <p:dialog header="Registro" widgetVar="dlg" showEffect="bounce" hideEffect="fade" modal="true">
+            <h:form>
+                <p:growl id="growl" showDetail="true"/>
+                <p:wizard>
+                    <p:tab id="Personal" title="Personal">
+                        <p:panel header="Información personal">
+                            <p:messages />
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:outputText value="Nombre: *" />
+                                <p:inputText value="#{crearUsuario.user.nombre}" required="true" label="Nombre"/>
+
+                                <h:outputText value="Apellidos: *" />
+                                <p:inputText value="#{crearUsuario.user.apellidos}" required="true" label="Apellidos"/>
+
+                                <h:outputText value="DNI: *" />
+                                <p:inputText value="#{crearUsuario.user.DNI}" required="true" label="DNI"/>
+
+                                <h:outputText value="Credencial: *" />
+                                <p:inputText value="#{crearUsuario.user.credencial}" required="true" label="Credencial"/>
+
+                                <h:outputText value="Edad: *" />
+                                <p:inputText value="#{crearUsuario.edad}" required="true" label="Edad"/>
+
+                                <h:outputText value="Dirección: *" />
+                                <p:inputText value="#{crearUsuario.user.direccion}" required="true" label="Nombre"/>
+
+                                <h:outputText value="Móvil: *" />
+                                <p:inputText value="#{crearUsuario.user.movil}" required="true" label="Móvil"/>
+
+                                <h:outputText value="Otro teléfono: " />
+                                <p:inputText value="#{crearUsuario.user.telefono}" required="false" label="Teléfono"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab id="DatosCuenta" title="Datos de la cuenta">
+                        <p:panel header="Datos de la cuenta">
+                            <p:messages />
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:outputText value="Nombre de usuario: *" />
+                                <p:inputText value="#{crearUsuario.user.username}" />
+
+                                <h:outputText value="Contraseña: *" />
+                                <p:inputText value="#{crearUsuario.firstPass}" />
+
+                                <h:outputText value="Repita la contraseña: *" />
+                                <p:inputText value="#{crearUsuario.secondPass}" />
+                            </h:panelGrid>
+                            <h:commandButton value="Confirmar" action="#{crearUsuario.save}" type="submit"/>
+                        </p:panel>
+                    </p:tab>
+                </p:wizard>
+
+            </h:form>
+        </p:dialog>
+    </h:body>
+
+</html>

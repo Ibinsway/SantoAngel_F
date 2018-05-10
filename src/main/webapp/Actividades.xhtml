@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Actividades - Grupo 39 Santo Angel
+        </title>
+        <link rel="icon" href="resources/flordelis.ico" type="image/png"></link>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/generalLayout.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/InicioEstilo.css" rel="stylesheet" type="text/css" />
+        <script src="https://maps.google.com/maps/api/js?key=AIzaSyC-qVlK1Uh6KZU8Yy65Y4MFC1i3JziXiw8" type="text/javascript"></script>
+    </h:head>
+    <h:body>
+        <div id="top" class="top">
+            <c:choose>
+                <c:when test="#{empty controlUsuario.educando}">
+                    <c:when test="#{empty controlUsuario.scouter}">
+                        <c:when test="#{empty controlUsuario.coordinador}">
+                            <h:form id="menu">
+                                <ul class="menulist">
+                                    <li><h:commandLink action="index.xhtml" value="Inicio"/></li>
+                                    <li><h:commandLink action="Actividades.xhtml" value="Actividades"/></li>
+                                    <li><h:commandLink action="quienesSomos.xhtml" value="Donde estamos"/></li>
+                                    <li><h:commandLink action="Colegio.xhtml" value="Colegio"/></li>
+                                    <li><h:commandLink action="asde.xhtml" value="ASDE"/></li>
+                                    <li><h:commandLink action="login.xhtml" value="INICIAR SESIÓN"/></li>
+                                </ul>
+                            </h:form>
+                        </c:when>
+                    </c:when>
+                </c:when>
+                <c:otherwise>
+                    <c:when test="#{!empty controlUsuario.educando}">
+                        <c:when test="#{empty controlUsuario.coordinador}">
+                            <c:when test="#{empty controlUsuario.scouter}">
+                                <h:form id="menu">
+                                    <ul class="menulist">
+                                        <li><h:commandLink action="index.xhtml" value="Inicio"/></li>
+                                        <li><h:commandLink action="Actividades.xhtml" value="Actividades"/></li>
+                                        <li><h:commandLink action="quienesSomos.xhtml" value="Donde estamos"/></li>
+                                        <li><h:commandLink action="Colegio.xhtml" value="Colegio"/></li>
+                                        <li><h:commandLink action="asde.xhtml" value="ASDE"/></li>
+                                        <li> <p:growl id="messages" showDetail="true"/>
+                                            <p:menuButton value="#{controlUsuario.nombreEd}" style="padding-left: 50%">
+                                                <p:menuitem value="Inicio" action="scoutGeneral.xhtml" update="messages" style="color:purple;"/>
+                                                <p:menuitem value="Foros" action="null" update="messages" style="color:purple;"/>
+                                                <p:menuitem value="Historial" action="historial.xhtml" ajax="false" style="color:purple;"/>
+                                                <p:menuitem value="Mis eventos" action="eventosProximos.xhtml" update="messages" style="color:purple;"/>
+                                                <p:menuitem value="Mi perfil" action="scoutProfile.xhtml" update="messages" style="color:purple;"/>
+                                                <p:separator />
+                                                <p:menuitem value="Salir" action="#{controlUsuario.logout()}" icon="ui-icon-close" style="color:purple;"/>
+                                            </p:menuButton></li>
+                                    </ul>
+                                </h:form>  
+                            </c:when>
+                        </c:when>
+                    </c:when>
+                </c:otherwise>
+            </c:choose>
+            <br></br>
+            <img src="resources/gruposcout.jpg"/>
+            <hr></hr>
+            <h:form>
+                <c:forEach var="evento" items="#{ActividadesInicio.eventosInicio}">
+                    <p:panel id="basic" header="Nombre: #{evento.nombreEvento} - Sección: #{evento.seccion.nombre_seccion} - Fecha: #{evento.fechaEvento.date}/#{evento.fechaEvento.month}/#{evento.fechaEvento.year}" style="margin-bottom:20px">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:graphicImage name="flordelis.png" style="width: 150px; height: 150px;" />
+                            <h:outputText value="#{evento.descripcionEvento}"/>
+                        </h:panelGrid>
+                    </p:panel>
+                </c:forEach>
+            </h:form>
+            <footer>
+                <p>© 2018<a style="color:#0a93a6; text-decoration:none;" href="#"> Grupo Scout 39 Santo Angel - Málaga</a>, All rights reserved 2018-2019.</p>
+            </footer>
+        </div>
+
+    </h:body>
+</html>

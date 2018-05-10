@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">      
+    <h:head>
+        <link href="./resources/css/profileLayout.css" rel="stylesheet" type="text/css" />
+        <title><h:outputText value="#{controlUsuario.seccionEd.nombre_seccion}"/> <h:outputText value=" - Perfil"/></title>
+    </h:head>
+    <h:body>
+        <div id="top" class="top">
+            <h:form id="menu">
+                <ul class="menulist">
+                    <li><h:commandLink action="index.xhtml"><img src="resources/santoangel.jpg" height="30"/></h:commandLink></li>
+                    <li><h:commandLink action="#{controlUsuario.inicioEd()}" value="Inicio"/></li>
+                    <li><h:commandLink action="scoutSeccion.xhtml" value="Foros"/></li>
+                    <li><h:commandLink action="#{controlUsuario.getHistorial()}" value="Historial"/></li>
+                    <li><h:commandLink action="#{controlUsuario.eventosEd()}" value="Eventos"/></li>
+                    <li><h:commandLink action="#{controlUsuario.perfilEd()}" value="Perfil"/></li>
+                    <li><h:commandLink action="#{controlUsuario.logout()}" value="Salir"/></li>
+                </ul>
+            </h:form>
+        </div>
+        <table id="tablacuerpo">
+            <tr>
+                <td>
+                    <br/>
+                    <!-- Hacer command link para subir foto -->
+                    <h:form>
+                        <p:commandLink onclick="PF('dlg').show();">
+                            <c:choose>
+                                <c:when test="#{!empty controlUsuario.foto}">
+                                    <h:graphicImage class="fotoPerfil" value="#{controlUsuario.byteToImageDir()}" width="350"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <img class="fotoPerfil" src="./resources/castores.jpg" width="350"/>
+                                </c:otherwise>
+                            </c:choose>
+                        </p:commandLink>
+                    </h:form>
+                </td>
+                <td class="borde">
+                    <div id="informacion" class="informacion">
+                        <h1>Mi información</h1>
+                        <h:outputText value="Nombre: "/><h:outputText value="#{controlUsuario.educando.nombre}"/> <br/>
+                        <h:outputText value="Apellidos: "/><h:outputText value="#{controlUsuario.educando.apellidos}"/> <br/>
+                        <h:outputText value="Dni: "/><h:outputText value="#{controlUsuario.educando.DNI}"/> <br/>
+                        <h:outputText value="Dirección: "/><h:outputText value="#{controlUsuario.educando.direccion}"/> <br/>        
+                        <h:outputText value="Teléfono: "/><h:outputText value="#{controlUsuario.educando.telefono}"/> <br/>
+                        <h:outputText value="Móvil: "/><h:outputText value="#{controlUsuario.educando.movil}"/> <br/>
+                        <h:outputText value="Fecha alta: "/><h:outputText value="#{controlUsuario.educando.alta}"/><br/>
+                        <h:outputText value="Credencial: "/><h:outputText value="#{controlUsuario.educando.credencial}"/> 
+
+                    </div>
+                </td>
+                <td class="borde">
+                    <ul class="informacion">
+                        <h1>Mis pagos</h1>
+                        <c:forEach var="cuota" items="#{controlUsuario.educando.cuotas}">
+                            <li><h:outputText value="Tasa anual: "/><h:outputText value="#{cuota.importe}"/> €<br/>
+                                <h:outputText value="Estado: "/><h:outputText value="#{cuota.estado}"/> <br/>
+                                <h:outputText value="Fecha: "/><h:outputText value="#{cuota.fechaEmision}"/> <br/>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </td>
+                <td>
+                    <div id="pagos" class="informacion">
+                        <h1>Mis promesas</h1><br/>
+                        <h:form>
+                            <div class="promesasbox">
+                                <ul class="listaPromesas">
+                                    <c:forEach var="promesa" items="#{controlUsuario.promesasEd}">
+                                        <li><h:outputText value="#{promesa.seccion.nombre_seccion}"/>: <h:outputText value="#{promesa.fechaPromesa.day}"/>/<h:outputText value="#{promesa.fechaPromesa.month}"/>/<h:outputText value="#{promesa.fechaPromesa.year}"/> <br/>
+                                            Descripción: <h:outputText value="#{promesa.descripcion}"/></li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                        </h:form>
+                    </div>
+                </td>
+            </tr>
+        </table>
+ 
+        <p:dialog header="Foto de perfil" widgetVar="dlg" minimizable="true" maximizable="true" modal="true" showEffect="scale" hideEffect="fade">
+            <h:outputText value="Subir foto" />
+            <h:form enctype="multipart/form-data">
+                <p:growl id="messages" showDetail="true" />
+
+                <p:fileUpload value="#{controlUsuario.uf}" mode="simple" skinSimple="true"/>
+
+                <h:commandButton value="¡Subir!" actionListener="#{controlUsuario.uploadFoto()}"/>
+            </h:form>
+        </p:dialog>
+
+    </h:body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:cpst="http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:components="http://xmlns.jcp.org/jsf/composite/components"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        
+        <!-- Configurable parameters -->
+        <cpst:interface>
+            <cpst:attribute name="title" />
+            <cpst:attribute name="descr" />
+            <cpst:attribute name="pene" />
+        </cpst:interface>
+        
+        <!-- Component implementation -->
+        <cpst:implementation>
+            <div class="purple lighten-5 nav-wrapper">
+                
+                <!--Texto de bienvenida (solo si usuario inicia sesion)-->
+                <c:if test="#{!empty Usuario.cuenta}">
+                    <h:outputText>Bienvenido #{Usuario.usuario}</h:outputText>
+                </c:if>
+                
+                <!--Boton de Alberto-->    
+                <div class="right">
+                    <h:form id = "loginn">
+
+                        <p:menuButton value="Entrar">
+                            <p:menuitem> Nombre <input type="nombre" size="20" name="nombre"/></p:menuitem>
+                            <p:menuitem> Contraseña <input type="password" size="20" name="password"/></p:menuitem>
+                            <p:menuitem value="Entrar" actionListener="#{menuView.entrar}"/>
+                            <p:menuitem value="Registrarse" url="PAGINA REGISTRO"/>
+                        </p:menuButton>
+                        
+                    </h:form>
+                </div>
+        </cpst:implementation>
+
+    </h:body>
+</html>

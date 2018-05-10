@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:components="http://xmlns.jcp.org/jsf/composite/components">
+    
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <!-- Import Google Icon Font -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <!-- Import Materialize.css -->
+        <link href="./resources/css/materialize.css" rel="stylesheet" type="text/css" media="screen,projection"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
+        <!-- Import custom css -->
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <!-- Let browser know website is optimized for mobile -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!-- Add favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>
+        
+        
+        <!-- Configurable parameters -->
+        <title> <ui:insert name="title">Lil' Scouts</ui:insert> </title>       
+    </h:head>
+    <h:body>
+        <div id="top" class="top ui-g-nopad">
+            <!--Encabezado-->
+            <div id="header" class="ui-g-12 card-panel purple lighten-4">
+                <h2>Grupo 39</h2>
+                <p>Scouts Santo Ángel</p>
+            </div>
+            <!--Barra de navegacion-->
+            <div id="navbar" class="ui-g-12">
+            <!--Paso de parametros desde la pagina a la plantilla, y al componente-->
+                <ui:insert name="holaQueTal">
+                    <components:navbar />
+                </ui:insert>
+            </div>
+            <!--Contenido-->
+            <div class="ui-g">
+                <c:choose>
+                    <c:when test="#{!empty Usuario.algoquevayaqui}">
+                    <!--Cuando no hay usuario logeado, la barra lateral no esta-->
+                        <div id="content" class="ui-g-12">
+                            <ui:insert name="content">Content</ui:insert>
+                        </div>                
+                    </c:when>
+                    <c:otherwise>
+                    <!--Cuando el user ha iniciado sesion, aparece la barra-->
+                        <div class="ui-g-3">
+                            <components:sidepanel />
+                        </div>
+                        <div id="content" class="ui-g-9">
+                            <ui:insert name="content">Content</ui:insert>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </div>
+        
+       
+        
+        <!--JavaScript at end of body for optimized loading-->
+        <script type="text/javascript" src=".resources/js/materialize.min.js" />
+    </h:body>
+</html>
+

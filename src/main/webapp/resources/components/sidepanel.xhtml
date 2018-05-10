@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:cpst="http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+        
+         <!-- Configurable parameters -->
+        <cpst:interface>
+<!--            <cpst:attribute name="title" />
+            <cpst:attribute name="descr" />
+            <cpst:attribute name="pene" />-->
+        </cpst:interface>
+         
+         
+        <!-- Component implementation -->
+        <cpst:implementation>
+            <!-- Panel estrecho -->
+            <p:panel id="sidepanel" class="ui-md-3 ui-sm-12">
+                <!-- Distintos casos de uso -->
+                <c:choose>
+                    <!--Cuando no hay usuario logeado-->
+                    <c:when test="#{empty Usuario.cuenta}">
+                    
+                    </c:when>
+                    <!--Si el usuario es EDUCANDO-->
+                    <c:when test="#{Usuario.Rol == 'EDUCANDO'}">
+                    
+                    </c:when>
+                    <!--Si el usuario es SCOUTER-->
+                    <c:when test="#{Usuario.Rol == 'SCOUTER'}">
+                    
+                    </c:when>
+                    <!--Si el usuario es ADMIN-->
+                    <c:when test="#{Usuario.ROl == 'ADMIN'}">
+                        
+                        <h:graphicImage class="ui ui-icon-stats"
+                        <p:commandLink value="Stats" onclick="sidepanel.openSubMenu(stats)" />
+                    
+                    </c:when>
+                </c:choose>
+            </p:panel>
+            
+        </cpst:implementation>
+    </h:body>
+</html>
