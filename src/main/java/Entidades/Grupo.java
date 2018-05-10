@@ -1,4 +1,4 @@
-package scouts;
+package Entidades;
 
 import java.io.Serializable;
 import java.util.List;
