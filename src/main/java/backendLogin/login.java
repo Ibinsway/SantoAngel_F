@@ -9,6 +9,7 @@ import Entidades.Coordinador;
 import Entidades.Educandos;
 import Entidades.Scouts;
 import Entidades.Usuario;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 
@@ -36,6 +37,7 @@ public class login {
         co.setNombre_Usuario("angel");
         co.setContraseña_Usuario("admin");
         
+        users = new ArrayList<>();
         users.add(ed);
         users.add(sc);
         users.add(co);
