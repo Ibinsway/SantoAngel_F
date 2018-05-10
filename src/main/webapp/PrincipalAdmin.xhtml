@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Principal Administrador</title>
         <link rel="stylesheet" href="css/index.css"/>
@@ -14,17 +15,33 @@
         
             <div id="menu">
         	<ul>
-            	<li class="menuitem"><a href="#">Principal</a></li>
+            	<li class="menuitem"><a href="PrincipalAdmin.xhtml">Principal</a></li>
                 <li class="menuitem"><a href="#">Mis Documentos</a></li>
-                <li class="menuitem"><a href="#">Nuevo Evento</a></li>
-                <li class="menuitem"><a href="#">Panel Administrador</a></li>
                 <li class="menuitem"><a href="#">Mi Perfil</a></li>
-                <li class="menuitem"><a href="#">Cerrar Sesión</a></li>
+                <li class="menuitem"><a href="index.xhtml">Cerrar Sesión</a></li>
                 </ul>
             </div> 
         
 		<div id="content">
                     <h1>Bienvenido: El usuario que accede       Grupo: Grupo al que pertenece</h1>
+                    
+                    
+                    <h:form>
+                        <p:growl id="messages" showDetail="true"/>
+
+                        <p:menuButton value="Panel Administrador">
+                            <p:menuitem value="Historial de miembros" actionListener="#{menuView.nuevoEvento}" update="messages" />
+                            <p:separator />
+                            <p:menuitem value="Gestión de Cuotas" actionListener="#{menuView.update}" update="messages" />
+                            <p:separator />
+                            <p:menuitem value="Estadísticas" actionListener="#{menuView.delete}" ajax="false" />
+                        </p:menuButton>
+                    </h:form>
+                    
+                    <p:button value="Nuevo Evento">
+                        <f:param name="productId" value="10" />
+                    </p:button>
+                    
                     
                     <div class="calendario">
                         <h:form class="form">
