@@ -1,36 +1,41 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Log-in</title>
+        <title>Scouts 39 Santo Angel</title>
+        <link rel="stylesheet" href="css/index.css"/>
     </h:head>
-    <h:body>
+    <h:body> 
+        <div id="container">
+            <div id="mainpic"></div>   
         
-        <div id="header" class="ui-g-12 card-panel purple lighten-4">
-                <h1>Grupo 39</h1>
-                <p>Scouts Santo Ángel</p>
-        </div>
+            <div id="menu">
+        	<ul>
+            	<li class="menuitem"><a href="index.xhtml">Volver</a></li>
+                </ul>
+            </div> 
         
-        <div id="rootContainer" class="container">
-            <div style="margin: 5px auto;"></div>
-            <div class="md">
-               
-                <h:form>
-                    <div class="form-group">
-                        <label for="name">Usuario</label>
-                        <h:inputText id="name" class="form-control" value="#{login.user}" required="true"/>
+		<div id="content">
+                    <div class="formulario">
+                        <h:form>
+                            <h:panelGrid columns="2" cellpadding="5">
+                            <div class="nombreuser">
+                                <label for="name">Usuario</label>
+                                <h:inputText id="name" class="form-control" value="#{login.user}" required="true"/>
+                            </div>
+                            <div class="claveuser">
+                                <label for="pwd">Contraseña</label>
+                                <h:inputSecret id="pass" class="form-control" value="#{login.pass}" required="true"/>
+                            </div>
+                            <div class="botonentrar">
+                                <h:commandButton class="login-button" value="Entrar" action="#{login.authenticate()}"/>
+                            </div>
+                            </h:panelGrid>
+                        </h:form>
                     </div>
-                    <div class="form-group">
-                        <label for="pwd">Contraseña</label>
-                        <h:inputSecret id="pass" class="form-control" value="#{login.pass}" required="true"/>
-                    </div>
-                    <div class="form-group" style="margin-top:10px;">
-                        <h:commandButton class="login-button" action="#{login.authenticate()}"/>
-                    </div>
-                </h:form>
-            </div>
-        </div>
+                </div>
+         </div>
     </h:body>
 </html>
-
