@@ -182,17 +182,11 @@ public class Usuario implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+        if (!(obj instanceof Usuario)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Usuario other = (Usuario) obj;
-        if (!Objects.equals(this.idUsuario, other.idUsuario)) {
+        Usuario other = (Usuario) obj;
+        if(!this.idUsuario.equals(other.idUsuario)) {
             return false;
         }
         return true;

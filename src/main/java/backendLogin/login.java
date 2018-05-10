@@ -12,18 +12,21 @@ import Entidades.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.faces.bean.RequestScoped;
+import javax.inject.Named;
 
 /**
  *
  * @author RAFA
  */
-@Stateless
+@Named(value="login")
+@RequestScoped
 public class login {
     private String user;
     private String pass;
     private List<Usuario> users;
     
-    public login(){
+    public String login(){
         //Creamos 1 usuario de cada rol y los añadimos a la lista de usuarios creados
         Educandos ed = new Educandos();
         ed.setNombre_Usuario("pepe");
@@ -42,15 +45,23 @@ public class login {
         users.add(sc);
         users.add(co);
         
+        return verify();
     }
     
-    public boolean verify(){
+    public String verify(){
         for(Usuario u:users){
             if(u.getNombre_Usuario().equals(user) && u.getContraseña_Usuario().equals(pass)){
-                return true;
+                if(u.getClass().equals(Educandos.class)){
+                    return "PrincipalEducando.xhtml";
+                }else if(u.getClass().equals(Coordinador.class)){
+                    return "PrincipalAdmin.xhtml";
+                }else {
+                    return "PrincipalScouter.xhtml";
+                }
             }
+        
         }
-        return false;
+        return null;
     }
     
     public String getuser(){
