@@ -5,7 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Scouts 39 Santo Angel</title>
-        <link rel="stylesheet" href="css/index.css"/>
+        <link rel="stylesheet" href="css/login.css"/>
     </h:head>
     <h:body> 
         <div id="container">
@@ -18,20 +18,21 @@
             </div> 
         
 		<div id="content">
-                    <div class="formulario">
+                    <div class="editarperfil">
                         <h:form>
                             <h:panelGrid columns="2" cellpadding="5">
-                            <div class="nombreuser">
-                                <label for="name">Usuario</label>
-                                <h:inputText id="name" class="form-control" value="#{login.user}" required="true"/>
-                            </div>
-                            <div class="claveuser">
-                                <label for="pwd">Contraseña</label>
-                                <h:inputSecret id="pass" class="form-control" value="#{login.pass}" required="true"/>
-                            </div>
-                            <div class="botonentrar">
-                                <h:commandButton class="login-button" value="Entrar" action="#{login.authenticate()}"/>
-                            </div>
+                                <div class="nombreuser">
+                                    <label for="name">Usuario</label>
+                                    <h:inputText id="name" class="form-control" value="#{user.name}" required="true"/>
+                                </div>
+                                <div class="claveuser">
+                                    <label for="pwd">Contraseña</label>
+                                    <h:inputSecret id="pass" class="form-control" value="#{user.password}" required="true"/>
+                                </div>
+                                <div class="botonentrar">
+                                    <h:commandButton class="login-button" value="Entrar" action="#{login.authenticate()}"/>
+                                </div>
+
                             </h:panelGrid>
                         </h:form>
                     </div>
