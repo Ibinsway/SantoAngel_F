@@ -34,6 +34,12 @@ height:300px;
     text-align: center;
 }
 
+.centrar2{
+    display:table;
+    margin-left: 400px;
+    margin-top: 10px;
+}
+
 .lightblue
 {
 color:#B1C6FC	

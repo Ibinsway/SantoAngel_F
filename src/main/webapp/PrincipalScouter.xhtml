@@ -17,7 +17,7 @@
         	<ul>
             	<li class="menuitem"><a href="PrincipalScouter.xhtml">Principal</a></li>
                 <li class="menuitem"><a href="#">Mis Documentos</a></li>
-                <li class="menuitem"><a href="#">Mi Perfil</a></li>
+                <li class="menuitem"><a href="PerfilUsuario.xhtml">Mi Perfil</a></li>
                 <li class="menuitem"><a href="index.xhtml">Cerrar Sesión</a></li>
                 </ul>
             </div> 
@@ -25,8 +25,7 @@
 		<div id="content">
                     <h1>Bienvenido: El usuario que accede       Grupo: Grupo al que pertenece</h1>
                     
-                    <p:button value="Nuevo Evento" icon="ui-icon-plus">
-                    </p:button>
+                    
                     
                     
                     <div class="calendario">
@@ -35,11 +34,15 @@
 
                             <h:panelGrid columns="2" cellpadding="5">
                                 <p:calendar id="inline" value="#{calendarView.date1}" mode="inline" />
-                            </h:panelGrid>
-                        </h:form>
-                            
-                    </div>
+                                
 
+                            </h:panelGrid>
+                            
+                        </h:form>
+                        
+                            <p:button value="Nuevo Evento" icon="ui-icon-plus" class="center2"></p:button>
+                    </div>
+                    
                     
                     <div class="ListaEventos">
                         <h:form id="form">           
