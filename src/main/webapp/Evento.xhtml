@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Evento</title>
         <link rel="stylesheet" href="css/index.css"/>
@@ -16,17 +17,45 @@
         	<ul>
             	<li class="menuitem"><a href="#">Principal</a></li>
                 <li class="menuitem"><a href="#">Mis Documentos</a></li>
-                <li class="menuitem"><a href="#">Nuevo Evento</a></li>
-                <li class="menuitem"><a href="#">Panel Administrador</a></li>
                 <li class="menuitem"><a href="#">Mi Perfil</a></li>
-                <li class="menuitem"><a href="#">Cerrar Sesión</a></li>
+                <li class="menuitem"><a href="index.xhtml">Cerrar Sesión</a></li>
                 </ul>
             </div> 
         
-		<div id="content">
-                    <h1>Bienvenido: El usuario que accede       Grupo: Grupo al que pertenece</h1>
- 
+            <div id="content">
+                <h1>Nombre del evento</h1>
+                <p> Descripcion del evento</p>
+                
+                 <p:graphicImage class="ImagenEvento" name="cabecera.jpg" width="250cm" height="250cm" />
+                
+                <p>Fecha del evento (si ponemos hora y lugar hay que cambiar el modelo)</p>
+                
+                <h:form>
+                     <p:commandButton value="Incribirse" class="inscribir" actionListener="#{buttonView.buttonAction}" ajax="false" />
+                </h:form>
+                
+                
+                
+                
+                <p:textEditor widgetVar="editor2" value="#{editorView.text2}" height="100" style="margin-bottom:10px" placeholder="Enter your content">
+                                <f:facet name="toolbar">
+                                    <span class="ql-formats">
+                                       <button class="ql-bold"></button>
+                                       <button class="ql-italic"></button>
+                                       <button class="ql-underline"></button>
+                                       <button class="ql-strike"></button>
+                                   </span>
+                                   <span class="ql-formats">
+                                       <select class="ql-font"></select>
+                                       <select class="ql-size"></select>
+                                   </span>
+                               </f:facet>
+                </p:textEditor>
+                
+               <p:commandButton value="Comentar" styleClass="ui-priority-primary" />
+                
             </div>
+            
          </div>
     </h:body>
 </html>

@@ -126,3 +126,8 @@ text-align: center;
 p {
     text-align: left;
 }
+
+.Imagenperfil {
+    display: block;
+    margin: auto;
+}
