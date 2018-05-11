@@ -23,9 +23,6 @@ public class Evento implements Serializable {
     private Eventos evento;
     
     public Evento() {
-        Eventos e1 = new Eventos("Las Delicias", "GrupoF", new Date(0), "Campamento");
-        Eventos e2 = new Eventos("Rio Chillar", "GrupoF",  new Date(0), "Excursion");
-        Eventos e3 = new Eventos("Las Julianas", "GrupoE", new Date(1), "Taller");
     }
     
     

@@ -5,9 +5,6 @@
  */
 package backendLogin;
 
-import Entidades.Coordinador;
-import Entidades.Educandos;
-import Entidades.Scouts;
 import Entidades.Usuario;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,17 +25,20 @@ public class login {
     
     public String login(){
         //Creamos 1 usuario de cada rol y los añadimos a la lista de usuarios creados
-        Educandos ed = new Educandos();
+        Usuario ed = new Usuario();
         ed.setNombre_Usuario("pepe");
         ed.setContraseña_Usuario("1234");
+        ed.setRolUsuario("Educando");
         
-        Scouts sc = new Scouts();
+        Usuario sc = new Usuario();
         sc.setNombre_Usuario("manolo");
         sc.setContraseña_Usuario("5678");
+        sc.setRolUsuario("Scouter");
         
-        Coordinador co = new Coordinador();
+        Usuario co = new Usuario();
         co.setNombre_Usuario("angel");
         co.setContraseña_Usuario("admin");
+        co.setRolUsuario("Admin");
         
         users = new ArrayList<>();
         users.add(ed);
@@ -51,9 +51,9 @@ public class login {
     public String verify(){
         for(Usuario u:users){
             if(u.getNombre_Usuario().equals(user) && u.getContraseña_Usuario().equals(pass)){
-                if(u.getClass().equals(Educandos.class)){
+                if(u.getRolUsuario().equals("Educando")){
                     return "PrincipalEducando.xhtml";
-                }else if(u.getClass().equals(Coordinador.class)){
+                }else if(u.getRolUsuario().equals("Admin")){
                     return "PrincipalAdmin.xhtml";
                 }else {
                     return "PrincipalScouter.xhtml";
