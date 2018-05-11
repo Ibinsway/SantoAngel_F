@@ -1,4 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Entidades;
+
+/**
+ *
+ * @author Alberto
+ */
 
 import java.io.Serializable;
 import java.util.Date;
@@ -43,7 +53,7 @@ public class Facturas_Clientes implements Serializable {
     
     @ManyToOne
     @JoinColumn(nullable = false)
-    private Educandos Educando;
+    private Usuario Usuario;
     
     
     //! Getters y Setters
@@ -89,12 +99,12 @@ public class Facturas_Clientes implements Serializable {
         this.pagado = pagado;
     }
     
-    public Educandos getEducandos() {
-        return Educando;
+    public Usuario getEducandos() {
+        return Usuario;
     }
 
-    public void setEducandos(Educandos Educando) {
-        this.Educando = Educando;
+    public void setEducandos(Usuario Usuario) {
+        this.Usuario = Usuario;
     }    
     
     
