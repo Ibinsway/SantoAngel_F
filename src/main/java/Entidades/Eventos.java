@@ -31,6 +31,10 @@ public class Eventos implements Serializable {
     @Column(nullable = false)
     private String nombreEventos;
     
+    /******** AGREGAR ESTE ATRIBUTO AL MODELO ER ********/
+    @Column(nullable = true)
+    private String descrEventos;
+    
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaEvento;
@@ -53,6 +57,13 @@ public class Eventos implements Serializable {
     @JoinColumn(nullable = false)
     private Grupo grupoEventos;
     
+    //! Constructor
+    public Eventos(String nombre, String grupo, Date fecha, String categoria) {
+        setNombreEventos(nombre);
+        setFechaEvento(fecha);
+        setCategoriaEvento(categoria);
+        setGrupoNombreGrupo(grupo);
+    }
     
     //! Setters y getters
 
