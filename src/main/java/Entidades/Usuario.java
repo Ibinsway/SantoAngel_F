@@ -1,20 +1,27 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Entidades;
+
+/**
+ *
+ * @author Alberto
+ */
+
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,9 +34,6 @@ import javax.persistence.Transient;
  * 
  */
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo_usuario", discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue("usuario")
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -60,6 +64,9 @@ public class Usuario implements Serializable {
     @Column(nullable = false, length = 30)
     private String email;
     
+    @Column(nullable=false,length = 20)
+    private String rolUsuario;
+    
     //! Foto_Perfil es una la direccion URL del archivo JPEG
     @Column(nullable = false)
     private String fotoPerfil;
@@ -69,10 +76,16 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy = "UsuarioIdUsuario")
     @JoinColumn(nullable = true)
     private List<Documento> docs;
-    
     @OneToMany(mappedBy = "UsuarioIdUsuarioComentario")
     @JoinColumn(nullable = true)
     private List<Comentario> comentarios;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Grupo grupoUsuario;
+    @OneToMany(mappedBy = "Educando")
+    @JoinColumn(nullable = false)
+    private List<Facturas_Clientes> facturas;
+    
     
     
     //! Constructor
@@ -170,6 +183,22 @@ public class Usuario implements Serializable {
     public void setFoto_Perfil(String fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
     }
+    public Grupo getGrupo() {
+        return grupoUsuario;
+    }
+
+    public void setGrupo(Grupo grupoEducandos) {
+        this.grupoUsuario = grupoUsuario;
+    }
+    
+    public String getRolUsuario(){
+        return rolUsuario;
+    }
+    
+    public void setRolUsuario(String rolUsuario){
+        this.rolUsuario = rolUsuario;
+    }
+    
 
     //! Overrided methods
     
@@ -182,11 +211,17 @@ public class Usuario implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Usuario)) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Usuario other = (Usuario) obj;
-        if(!this.idUsuario.equals(other.idUsuario)) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (!Objects.equals(this.idUsuario, other.idUsuario)) {
             return false;
         }
         return true;

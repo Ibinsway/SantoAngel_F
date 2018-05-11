@@ -1,4 +1,15 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Entidades;
+
+/**
+ *
+ * @author Alberto
+ */
+
 
 import java.io.Serializable;
 import java.util.List;
@@ -32,11 +43,11 @@ public class Grupo implements Serializable {
     
     @OneToMany(mappedBy = "grupoScouts")
     @JoinColumn(nullable = false)
-    private List<Scouts> scouts;
+    private List<Usuario> scouts;
     
     @OneToMany(mappedBy = "grupoEducandos")
     @JoinColumn(nullable = false)
-    private List<Educandos> educandos;
+    private List<Usuario> educandos;
     
     @OneToMany(mappedBy = "grupoEventos")
     @JoinColumn(nullable = true)
@@ -62,19 +73,19 @@ public class Grupo implements Serializable {
         this.rangoEdad = rangoEdad;
     }
     
-    public List<Scouts> getScouts() {
+    public List<Usuario> getScouts() {
         return scouts;
     }
 
-    public void setScouts(List<Scouts> scouts) {
+    public void setScouts(List<Usuario> scouts) {
         this.scouts = scouts;
     }
 
-    public List<Educandos> getEducando() {
+    public List<Usuario> getEducando() {
         return educandos;
     }
 
-    public void setEducando(List<Educandos> educandos) {
+    public void setEducando(List<Usuario> educandos) {
         this.educandos = educandos;
     }
 
