@@ -29,11 +29,9 @@ width:900px;
 height:300px;	
 }
 
-#pano{
+.centrar{
     display:block;
-    margin: auto;
-    
-    
+    text-align: center;
 }
 
 .lightblue
