@@ -18,7 +18,7 @@ import javax.inject.Named;
  */
 @Named(value="login")
 @RequestScoped
-public class login {
+public class Login {
     private String user;
     private String pass;
     private List<Usuario> users;
