@@ -66,16 +66,19 @@
                 <h2>Crear un nuevo usuario</h2>
                 
                 <h:form>
-                    <div class="nombreuser">
-                        <label for="name">Correo Electrónico</label>
-                        <h:inputText class="NewCorreo" value="#{login.user}" required="true"/>
-                    </div>
-                    <div class="claveuser">
-                        <label for="pwd">Grupo</label>
-                        <h:inputSecret class="form" value="#{login.pass}" required="true"/>
-                    </div>
+                    <h:panelGrid columns="2" cellpadding="5">
+                            <div class="nombreuser">
+                                <label for="name">Correo Electrónico</label>
+                                <h:inputText id="name" class="form-control" value="#{login.user}" required="true"/>
+                            </div>
+                            <div class="claveuser">
+                                <label for="pwd">Grupo</label>
+                                <h:inputSecret id="pass" class="form-control" value="#{login.pass}" required="true"/>
+                            </div>
+                            
+                            </h:panelGrid>
                     
-                    <p:commandButton value="Crear nuevo usuario"  icon="ui-icon-person"/>
+                    <p:commandButton class="centrar2" value="Crear nuevo usuario"  icon="ui-icon-person"/>
                     
                     
                 </h:form>
