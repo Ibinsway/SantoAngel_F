@@ -9,67 +9,86 @@ import Entidades.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
  *
- * @author RAFA
+ * @author RAFA, flamenquim
  */
 @Named(value="login")
 @RequestScoped
 public class Login {
-    private String user;
-    private String pass;
-    private List<Usuario> users;
     
-    public String login(){
-        //Creamos 1 usuario de cada rol y los añadimos a la lista de usuarios creados
-        Usuario ed = new Usuario();
-        ed.setNombre_Usuario("pepe");
-        ed.setContraseña_Usuario("1234");
-        ed.setRolUsuario("Educando");
+    private String usuario;
+    private String contrasenia;
+    private List<Usuario> usuarios;
+    
+    //! Constructor
+    
+    public Login() {
         
-        Usuario sc = new Usuario();
-        sc.setNombre_Usuario("manolo");
-        sc.setContraseña_Usuario("5678");
-        sc.setRolUsuario("Scouter");
+        usuarios = new ArrayList<Usuario>();
+        usuarios.add(new Usuario("pepe", "1234", "Educando"));
+        usuarios.add(new Usuario("manolo", "5678", "Scouter"));
+        usuarios.add(new Usuario("angel", "admin", "Admin"));
         
-        Usuario co = new Usuario();
-        co.setNombre_Usuario("angel");
-        co.setContraseña_Usuario("admin");
-        co.setRolUsuario("Admin");
-        
-        users = new ArrayList<>();
-        users.add(ed);
-        users.add(sc);
-        users.add(co);
-        
-        return verify();
     }
     
-    public String verify(){
-        for(Usuario u:users){
-            if(u.getNombre_Usuario().equals(user) && u.getContraseña_Usuario().equals(pass)){
-                if(u.getRolUsuario().equals("Educando")){
-                    return "PrincipalEducando.xhtml";
-                }else if(u.getRolUsuario().equals("Admin")){
-                    return "PrincipalAdmin.xhtml";
-                }else {
-                    return "PrincipalScouter.xhtml";
+    //! Getters, setters
+    
+    public String getUsuario(){
+        return usuario;
+    }
+    
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+    
+    public String getContrasenia(){
+        return contrasenia;
+    }
+    
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
+    
+    //! Metodos
+    
+    public String autenticar(){
+        
+        if(this.contrasenia.equals("") || this.usuario.equals("")) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            if(this.contrasenia.equals("")) {
+                ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Contraseña not found", "Contraseña not found"));
+            
+            } else if(this.usuario.equals("")) {
+                ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "User not found", "User not found"));
+            } else {
+                ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "User in DB not found", "User in DB not found"));
+            }
+            //! return null;
+        } else {
+            for(Usuario u : usuarios){
+            
+                if(u.getNombre_Usuario().equals(usuario) &&
+                   u.getContraseña_Usuario().equals(contrasenia)){
+
+                    if(u.getRolUsuario().equals("Educando")){
+                        return "PrincipalEducando.xhtml";
+
+                    }else if(u.getRolUsuario().equals("Admin")){
+                        return "PrincipalAdmin.xhtml";
+
+                    }else {
+                        return "PrincipalScouter.xhtml";
+                    }
                 }
             }
-        
+            //! return null;
         }
         return null;
     }
-    
-    public String getuser(){
-        return user;
-    }
-    public String getpass(){
-        return pass;
-    }
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
 }
