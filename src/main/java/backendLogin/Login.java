@@ -8,23 +8,28 @@ package backendLogin;
 import Entidades.Usuario;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Stateless;
+//import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
  *
  * @author RAFA, flamenquim
  */
-@Named(value="login")
+@Named(value = "login")
 @RequestScoped
 public class Login {
     
     private String usuario;
     private String contrasenia;
     private List<Usuario> usuarios;
+    
+    @Inject
+    private InfoSession sesion;
     
     //! Constructor
     
@@ -72,19 +77,12 @@ public class Login {
             //! return null;
         } else {
             for(Usuario u : usuarios){
-            
+                
                 if(u.getNombre_Usuario().equals(usuario) &&
                    u.getContraseña_Usuario().equals(contrasenia)){
 
-                    if(u.getRolUsuario().equals("Educando")){
-                        return "PrincipalEducando.xhtml";
-
-                    }else if(u.getRolUsuario().equals("Admin")){
-                        return "PrincipalAdmin.xhtml";
-
-                    }else {
-                        return "PrincipalScouter.xhtml";
-                    }
+                    sesion.setUsuario(u);
+                    return sesion.inicio();
                 }
             }
             //! return null;

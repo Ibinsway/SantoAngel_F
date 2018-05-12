@@ -21,20 +21,35 @@
         
 		<div id="content">
                     <div class="formulario">
-                        <h:form>
-                            <h:panelGrid columns="2" cellpadding="5">
-                            <div class="nombreuser">
+                        <h:form id="login">
+                            <table>
+                                <tr>
+                                    <td>Usuario: </td>
+                                    <td>
+                                        <h:inputText class="form-control" value="#{login.usuario}" required="true"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Contraseña: </td>
+                                    <td>
+                                        <h:inputSecret class="form-control" value="#{login.contrasenia}" required="true"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <h:commandButton class="login-button" value="Entrar" action="#{login.autenticar()}"/>
+                                    </td>
+                                </tr>
+<!--                            <div class="nombreuser">
                                 <label for="name">Usuario</label>
-                                <h:inputText id="name" class="form-control" value="#{login.user}" required="true"/>
+                                
                             </div>
                             <div class="claveuser">
                                 <label for="pwd">Contraseña</label>
-                                <h:inputSecret id="pass" class="form-control" value="#{login.pass}" required="true"/>
+                                
                             </div>
-                            <div class="botonentrar">
-                                <h:commandButton class="login-button" value="Entrar" action="#{login.login()}"/>
-                            </div>
-                            </h:panelGrid>
+                            <div class="botonentrar">-->
+                            </table>
                         </h:form>
                     </div>
                 </div>
