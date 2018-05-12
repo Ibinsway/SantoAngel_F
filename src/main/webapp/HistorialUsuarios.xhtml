@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Historial de Usuarios</title>
+        <link rel="stylesheet" href="css/index.css"/>
+    </h:head>
+    <h:body> 
+        <div id="container">
+            <div id="mainpic"></div>   
+        
+            <div id="menu">
+        	<ul>
+            	<li class="menuitem"><a href="index.xhtml">Principal</a></li>
+                <li class="menuitem"><a href="#">Mis Documentos</a></li>
+                <li class="menuitem"><a href="#">Mi Perfil</a></li>
+                <li class="menuitem"><a href="index.xhtml">Cerrar Sesión</a></li>
+                </ul>
+            </div> 
+        
+            <div id="content">
+                 <h:form id="form">    
+                     
+                     <h1>Gestión de usuarios</h1>
+                     
+                            <p:growl id="msgs" showDetail="true" />
+                            <p:accordionPanel multiple="true">
+
+                                <p:tab title="La Manada de Tha">
+                                    <h:panelGrid columns="2" cellpadding="10">
+                                        <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
+                                        <h:outputText
+                                            value="The story begins as Don Vito Corleone..." />
+                                    </h:panelGrid>
+                                </p:tab>
+
+                                <p:tab title="La Tropa de Kim">
+                                    <h:panelGrid columns="2" cellpadding="10">
+                                        <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+                                        <h:outputText value="Francis Ford Coppola's legendary..." />
+                                    </h:panelGrid>
+                                </p:tab>
+
+                                <p:tab title="La Unidad Esculta Siryu">
+                                    <h:panelGrid columns="2" cellpadding="10">
+                                        <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                                        <h:outputText value="After a break of more than 15 years...." />
+                                    </h:panelGrid>
+                                </p:tab>
+                                
+                                <p:tab title="El Clan Rover Almogama">
+                                    <h:panelGrid columns="2" cellpadding="10">
+                                        <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                                        <h:outputText value="After a break of more than 15 years...." />
+                                    </h:panelGrid>
+                                </p:tab>
+
+                            </p:accordionPanel>
+                    </h:form>
+                
+                
+                <h2>Crear un nuevo usuario</h2>
+                
+                <h:form>
+                    <div class="nombreuser">
+                        <label for="name">Correo Electrónico</label>
+                        <h:inputText class="NewCorreo" value="#{login.user}" required="true"/>
+                    </div>
+                    <div class="claveuser">
+                        <label for="pwd">Grupo</label>
+                        <h:inputSecret class="form" value="#{login.pass}" required="true"/>
+                    </div>
+                    
+                    <p:commandButton value="Crear nuevo usuario"  icon="ui-icon-person"/>
+                    
+                    
+                </h:form>
+                
+                
+            </div>
+            
+         </div>
+    </h:body>
+</html>
+
