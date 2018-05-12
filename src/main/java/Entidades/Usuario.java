@@ -35,6 +35,8 @@ import javax.persistence.Transient;
  */
 @Entity
 public class Usuario implements Serializable {
+    
+    
 
     private static final long serialVersionUID = 1L;
     
@@ -96,8 +98,8 @@ public class Usuario implements Serializable {
     public Usuario() {
         
     }
-
-    public Usuario(String usuario, String contrasenia, String rol) {
+    
+     public Usuario (String usuario, String contrasenia, String rol){
         setNombre_Usuario(usuario);
         setContraseña_Usuario(contrasenia);
         setRolUsuario(rol);
@@ -206,6 +208,11 @@ public class Usuario implements Serializable {
     
     public void setRolUsuario(String rolUsuario){
         this.rolUsuario = rolUsuario;
+    }
+    
+    public Usuario getUsuario(){
+        Usuario aux = new Usuario(this.nombreUsuario, this.contraseñaUsuario, this.rolUsuario);
+        return aux;
     }
     
 
