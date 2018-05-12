@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Evento</title>
+        <title>Mis Documentos</title>
         <link rel="stylesheet" href="css/index.css"/>
     </h:head>
     <h:body> 
@@ -16,17 +16,40 @@
             <div id="menu">
         	<ul>
             	<li class="menuitem"><a href="index.xhtml">Principal</a></li>
-                <li class="menuitem"><a href="#">Mis Documentos</a></li>
-                <li class="menuitem"><a href="#">Mi Perfil</a></li>
+                <li class="menuitem"><a href="Documentos.xhtml">Mis Documentos</a></li>
+                <li class="menuitem"><a href="PerfilUsuario.xhtml">Mi Perfil</a></li>
                 <li class="menuitem"><a href="index.xhtml">Cerrar Sesión</a></li>
                 </ul>
             </div> 
         
             <div id="content">
-                
+                <table align="center" border="1">
+                    <tr>
+                        <th> Documento </th>
+                        <th> Estado del Documento </th>
+                        <th></th>
+                    </tr>
+                    
+                    <tr>
+                        <td>S03</td>
+                        <td>Aceptado</td>
+                        <td>
+                            <a href="documents/s03.doc"> Descargar </a>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Renta 2018</td>
+                        <td>Pendiente de Revisión</td>
+                        <td>
+                            <a href="documents/renta2018.pdf"> Descargar </a>
+                        </td>
+                    </tr>
+                    
+                </table>
             </div>
             
-         </div>
+        </div>
     </h:body>
 </html>
 
