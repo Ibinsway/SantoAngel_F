@@ -76,12 +76,15 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy = "UsuarioIdUsuario")
     @JoinColumn(nullable = true)
     private List<Documento> docs;
+    
     @OneToMany(mappedBy = "UsuarioIdUsuarioComentario")
     @JoinColumn(nullable = true)
     private List<Comentario> comentarios;
+    
     @ManyToOne
     @JoinColumn(nullable = false)
     private Grupo grupoUsuario;
+    
     @OneToMany(mappedBy = "Educando")
     @JoinColumn(nullable = false)
     private List<Facturas_Clientes> facturas;
@@ -94,6 +97,12 @@ public class Usuario implements Serializable {
         
     }
 
+    public Usuario(String usuario, String contrasenia, String rol) {
+        setNombre_Usuario(usuario);
+        setContraseña_Usuario(contrasenia);
+        setRolUsuario(rol);
+    }
+    
     //! Getters and setters
     
     public Long getID_Usuario() {
