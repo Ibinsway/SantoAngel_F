@@ -22,6 +22,7 @@
         
 		<div id="content">
                     <div class="formulario">
+<<<<<<< HEAD
                         <c:when test="#{empty controlAutorizacion.usuario}">
                         <h:form id="login">
                             <table>
@@ -43,15 +44,22 @@
                                     </td>
                                 </tr>
 <!--                            <div class="nombreuser">
+=======
+                        <h:form>
+                            <h:panelGrid columns="2" cellpadding="5">
+                            <div class="nombreuser">
+>>>>>>> parent of 4f9b1ea... Modificado JSF y BackingBean "Login"
                                 <label for="name">Usuario</label>
-                                
+                                <h:inputText id="name" class="form-control" value="#{login.user}" required="true"/>
                             </div>
                             <div class="claveuser">
                                 <label for="pwd">Contraseña</label>
-                                
+                                <h:inputSecret id="pass" class="form-control" value="#{login.pass}" required="true"/>
                             </div>
-                            <div class="botonentrar">-->
-                            </table>
+                            <div class="botonentrar">
+                                <h:commandButton class="login-button" value="Entrar" action="#{login.login()}"/>
+                            </div>
+                            </h:panelGrid>
                         </h:form>
                       </c:when>
                     </div>
